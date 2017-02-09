@@ -62,17 +62,19 @@ def scinv_gradloss(output, gt,batch_size,scope=None):
         zero=tf.zeros_like(gt)
         mask = tf.not_equal(gt, zero)
         mask=tf.cast(mask,tf.float32)
-        mask=tf.div(mask,mask)# divide 0/0 gives us NaN values
-        
+        #mask=tf.div(mask,mask)# divide 0/0 gives us NaN values
+        #output_nan= tf.div(output,mask)
+        #gt_nan=tf.div(gt,mask)
         # compute scale invariant grad loss                
         grad_output = ops.scale_invariant_gradient(input=output, deltas=[1,2,4], weights=[1,0.5,0.25], epsilon=0.001)
         grad_gt = ops.scale_invariant_gradient(input=gt, deltas=[1,2,4], weights=[1,0.5,0.25], epsilon=0.001)
-        diff=tf.subtract(grad_output,grad_gt)
+        diff = ops.replace_nonfinite(grad_output-grad_gt)
+        #diff=tf.subtract(grad_output,grad_gt)
         #apply mask
-        mask_out=tf.concat(0, [mask,mask])# the grad has 2 time more matrices in tensor because of grad by x and by y
-        diff=tf.multiply(mask_out,diff)
+        #mask_out=tf.concat(0, [mask,mask])# the grad has 2 time more matrices in tensor because of grad by x and by y
+        #diff=tf.multiply(mask_out,diff)
         #remove NaN values
-        diff=tf.select(tf.is_nan(diff),tf.zeros_like(diff),diff)
+        #diff=tf.select(tf.is_nan(diff),tf.zeros_like(diff),diff)
 
         gradLoss=tf.reduce_sum(tf.square(diff))/(2*batch_size)
         tf.add_to_collection(LOSSES_COLLECTION, gradLoss)

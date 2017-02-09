@@ -18,6 +18,7 @@ import param
 import model
 import data
 import evalfunct as evaluate
+
 CHECKPOINT_DIR=param.TRAIN_LOG
 NUM_EXAMPLES_PER_EPOCH_FOR_EVAL=param.NUM_EXAMPLES_PER_EPOCH_FOR_EVAL
 BATCH_SIZE=param.BATCH_SIZE
@@ -66,7 +67,7 @@ def _eval_once(saver, summary_writer, scale_inv_error, L1_relative_error,L1_inve
       total_sample_count = num_iter * BATCH_SIZE
       step = 0
 
-      print('%s: starting evaluation on (%s).' % (datetime.now(), FLAGS.subset))
+      print('%s: starting evaluation on (%s).' % (datetime.now(), NUM_EXAMPLES_PER_EPOCH_FOR_EVAL))
       start_time = time.time()
       while step < num_iter and not coord.should_stop():
         scale_inv_error, L1_relative_error,L1_inverse_error = sess.run([scale_inv_error, L1_relative_error,L1_inverse_error])

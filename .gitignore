@@ -3,6 +3,7 @@ Dataset
 build
 SUN3D/list.txt
 SUN3DCppReader
+example_test
 log
 eval
 *.pyc
