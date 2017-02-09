@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/nan.dir/nan.cpp.o  -o nan -rdynamic /misc/lmbraid11/tananaed/tools/curl-7.52.1/inst/lib/libcurl.so -ljpeg -lpng -lz -Wl,-rpath,/misc/lmbraid11/tananaed/tools/curl-7.52.1/inst/lib 

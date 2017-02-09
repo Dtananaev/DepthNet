@@ -1,0 +1,3 @@
+/misc/lmbraid11/tananaed/DepthNet/NaN_checker/CMakeFiles/edit_cache.dir
+/misc/lmbraid11/tananaed/DepthNet/NaN_checker/CMakeFiles/rebuild_cache.dir
+/misc/lmbraid11/tananaed/DepthNet/NaN_checker/CMakeFiles/nan.dir

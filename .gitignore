@@ -1,0 +1,8 @@
+*~
+Dataset
+build
+SUN3D/list.txt
+SUN3DCppReader
+log
+eval
+*.pyc
